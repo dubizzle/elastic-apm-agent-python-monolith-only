@@ -68,7 +68,7 @@ class Transport(HTTPTransportBase):
             body = response.read()
             if response.status >= 400:
                 print("trying to hit url: " + url)
-                print("data: " + data)                
+                print("data : " + data)                
                 if response.status == 429:  # rate-limited
                     message = 'Temporarily rate limited: '
                     print_trace = False
