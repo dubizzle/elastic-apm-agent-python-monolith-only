@@ -37,7 +37,9 @@ class Transport(HTTPTransportBase):
 
     def send(self, data, headers, timeout=None):
         response = None
-
+        print("SENDING TO URL",self._url,'\n')
+        print("SENDING DATA",data,'\n')
+        print("HEADERS",headers,'\n')
         # ensure headers are byte strings
         headers = {k.encode('ascii') if isinstance(k, compat.text_type) else k:
                    v.encode('ascii') if isinstance(v, compat.text_type) else v
@@ -66,9 +68,7 @@ class Transport(HTTPTransportBase):
                     )
                 raise TransportException(message, data, print_trace=print_trace)
             body = response.read()
-            if response.status >= 400:
-                print("trying to hit url: " + url)
-                print("data : " + data)                
+            if response.status >= 400:         
                 if response.status == 429:  # rate-limited
                     message = 'Temporarily rate limited: '
                     print_trace = False
