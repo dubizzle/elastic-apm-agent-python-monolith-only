@@ -185,6 +185,7 @@ class Client(object):
 
         if self.config.disable_send or self._filter_exception_type(data):
             return
+        print("DATA BEING SENT FROM CLIENT:", data)
 
         payload = self.encode(data)
 
@@ -210,6 +211,7 @@ class Client(object):
         """
         Serializes ``data`` into a raw string.
         """
+        print("DATA BEING ENCODED:", data)
         return zlib.compress(json.dumps(data).encode('utf8'))
 
     def decode(self, data):
